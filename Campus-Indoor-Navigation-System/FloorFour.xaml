@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Campus_Indoor_Navigation_System.FloorFour"
              Title="FloorFour">
-    <VerticalStackLayout>
-        <Label 
-            Text="4444444444444444"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <Image
+       Source="floorfour.jpg"
+       Aspect="AspectFit"
+       HorizontalOptions="Center"
+       VerticalOptions="CenterAndExpand">
+        </Image>
+    </Grid>
 </ContentPage>
