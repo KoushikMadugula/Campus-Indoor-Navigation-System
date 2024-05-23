@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Campus_Indoor_Navigation_System.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="cc.png"
+                HeightRequest="185"
+                Aspect="AspectFit" />
+
+            <Label
+                Text="Welcome to Cambrian College Indoor Navigation System"
+                Style="{StaticResource Headline}" />
+
+            <Label
+                Text="Please select the floor from below:"
+                Style="{StaticResource SubHeadline}" />
+
+            <Button
+                x:Name="FloorOne"
+                Text="Floor 1" 
+                MaximumWidthRequest="200"
+                BackgroundColor="Orange"
+                Clicked="NavigateFloorOne"
+                HorizontalOptions="Fill" 
+                />
+
+            <Button
+                x:Name="FloorTwo"
+                Text="Floor 2" 
+                MaximumWidthRequest="200"
+                Clicked="NavigateFloorTwo"
+                BackgroundColor="Orange"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="FloorThree"
+                Text="Floor 3" 
+                MaximumWidthRequest="200"
+                Clicked="NavigateFloorThree"
+                BackgroundColor="Orange"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="FloorFour"
+                Text="Floor 4" 
+                MaximumWidthRequest="200"
+                Clicked="NavigateFloorFour"
+                BackgroundColor="Orange"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

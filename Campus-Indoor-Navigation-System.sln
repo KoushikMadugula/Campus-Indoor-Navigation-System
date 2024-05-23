@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campus-Indoor-Navigation-System", "Campus-Indoor-Navigation-System\Campus-Indoor-Navigation-System.csproj", "{14F52F8B-6C2D-45E9-A201-DF93A165975D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F52F8B-6C2D-45E9-A201-DF93A165975D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25EA5E29-C707-448D-A930-F2B42BF0CA24}
+	EndGlobalSection
+EndGlobal
