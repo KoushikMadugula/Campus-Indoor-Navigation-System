@@ -1,12 +1,15 @@
-﻿namespace Campus_Indoor_Navigation_System
+﻿using Campus_Indoor_Navigation_System.viewModel;
+
+namespace Campus_Indoor_Navigation_System
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
-        public MainPage()
+        public MainPage(MainPageViewModel mainPageViewModel)
         {
-            InitializeComponent();
+           InitializeComponent();
+            BindingContext = mainPageViewModel;
         }
 
         private void NavigateFloorOne(object sender, EventArgs e)

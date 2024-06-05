@@ -6,11 +6,14 @@
 
         <Grid>
             <Image
+                x:Name="FloorOneImage"
                Source="floorone.jpg"
-               Aspect="AspectFit"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand">
-            </Image>
+               Aspect="AspectFit">
+            <Image.GestureRecognizers>
+                <PinchGestureRecognizer PinchUpdated="OnPinchUpdated"/>
+                <PanGestureRecognizer PanUpdated="OnPanUpdated"/>
+            </Image.GestureRecognizers>
+        </Image>
         </Grid>
             
 </ContentPage>

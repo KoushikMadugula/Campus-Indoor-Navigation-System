@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Campus_Indoor_Navigation_System.MainPage">
+             x:Class="Campus_Indoor_Navigation_System.MainPage"
+             xmlns:viewmodel ="clr-namespace:Campus_Indoor_Navigation_System.viewModel"
+             x:DataType="viewmodel:MainPageViewModel">
 
     <ScrollView>
         <VerticalStackLayout
@@ -52,6 +54,8 @@
                 Clicked="NavigateFloorFour"
                 BackgroundColor="Orange"
                 HorizontalOptions="Fill" />
+
+            <Button Text="show My location" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="250" Margin="0,100,0,0" Command="{Binding CheckLocationCommand}"></Button>
 
         </VerticalStackLayout>
     </ScrollView>
