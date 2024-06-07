@@ -55,6 +55,14 @@
                 BackgroundColor="Orange"
                 HorizontalOptions="Fill" />
 
+            <Button
+                x:Name="WifiPage"
+                Text="Floor Wifi" 
+                MaximumWidthRequest="200"
+                Clicked="NavigateWifiPage"
+                BackgroundColor="Orange"
+                HorizontalOptions="Fill" />
+
             <Button Text="show My location" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="250" Margin="0,100,0,0" Command="{Binding CheckLocationCommand}"></Button>
 
         </VerticalStackLayout>

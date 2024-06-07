@@ -31,6 +31,11 @@ namespace Campus_Indoor_Navigation_System
         {
             Navigation.PushAsync(new FloorFour());
         }
+
+        private void NavigateWifiPage(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new WifiPage());
+        }
     }
 
 }
