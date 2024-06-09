@@ -1,4 +1,4 @@
-﻿using Campus_Indoor_Navigation_System.viewModel;
+﻿//using Campus_Indoor_Navigation_System.viewModel;
 
 namespace Campus_Indoor_Navigation_System
 {
@@ -6,10 +6,15 @@ namespace Campus_Indoor_Navigation_System
     {
         int count = 0;
 
-        public MainPage(MainPageViewModel mainPageViewModel)
+        public MainPage()//MainPageViewModel mainPageViewModel
         {
            InitializeComponent();
-            BindingContext = mainPageViewModel;
+            //BindingContext = mainPageViewModel;
+        }
+
+        private void NavigateMapPage(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new MapPage());
         }
 
         private void NavigateFloorOne(object sender, EventArgs e)

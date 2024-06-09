@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,12 +12,13 @@ namespace Campus_Indoor_Navigation_System
 {
     public partial class WifiPage : ContentPage
     {
-        List<NetworkData> networkDataModel = new List<NetworkData>();
+        ObservableCollection<NetworkData> networkDataModel = new ObservableCollection<NetworkData>();
         public Command InfoCommand { get; }
         public Command ConnectCommand { get; }
         private GeolocationRequest geoRequest;
         private CancellationTokenSource cts;
-        private Timer timer;
+        private Timer timerWiFiScan;
+        private Timer timerGPSScan;
 
         public WifiPage()
         {
@@ -67,9 +69,66 @@ namespace Campus_Indoor_Navigation_System
                     loading.IsRunning = true;
                     scanCollectionView.IsVisible = false;
                     var response = await CrossWifiManager.Current.ScanWifiNetworks();
-                    networkDataModel.Clear();
-                    foreach (var item in response)
+                    //networkDataModel.Clear();
+                    //foreach (var item in response)
+                    //{
+                    //    dynamic nativeObject = item.NativeObject;
+
+                    //    networkDataModel.Add(new NetworkData()
+                    //    {
+                    //        StausId = item.StausId,
+                    //        IpAddress = (int)item.IpAddress,
+                    //        Bssid = item.Bssid,
+                    //        Ssid = item.Ssid,
+                    //        GatewayAddress = item.GatewayAddress,
+                    //        NativeObject = item.NativeObject,
+                    //        Level = nativeObject.Level,
+                    //    });
+                    //}
+
+                    //
+
+                    // Create a dictionary from the response for quick lookup
+                    var responseDict = response.ToDictionary(item => item.Bssid, item => item);
+
+                    // List to hold items to be removed
+                    List<NetworkData> itemsToRemove = new List<NetworkData>();
+
+                    foreach (var item in networkDataModel)
                     {
+                        if (responseDict.ContainsKey(item.Bssid))
+                        {
+                            // If the item exists in the response, update the values
+                            dynamic nativeObject = responseDict[item.Bssid].NativeObject;
+
+                            item.StausId = responseDict[item.Bssid].StausId;
+                            item.IpAddress = (int)responseDict[item.Bssid].IpAddress;
+                            item.Ssid = responseDict[item.Bssid].Ssid; //DateTime.Now.ToString();
+                            item.GatewayAddress = responseDict[item.Bssid].GatewayAddress;
+                            item.NativeObject = responseDict[item.Bssid].NativeObject;
+                            item.Level = nativeObject.Level;
+
+                            // Remove the item from the response dictionary
+                            responseDict.Remove(item.Bssid);
+                        }
+                        else
+                        {
+                            // If the item does not exist in the response, mark it for removal
+                            itemsToRemove.Add(item);
+                        }
+                    }
+
+                    // Remove items not found in the response
+                    foreach (var item in itemsToRemove)
+                    {
+                        networkDataModel.Remove(item);
+                    }
+
+                    // Add new items from the response
+                    foreach (var item in responseDict.Values)
+                    {
+                        dynamic nativeObject = item.NativeObject;
+
                         networkDataModel.Add(new NetworkData()
                         {
                             StausId = item.StausId,
@@ -77,9 +136,12 @@ namespace Campus_Indoor_Navigation_System
                             Bssid = item.Bssid,
                             Ssid = item.Ssid,
                             GatewayAddress = item.GatewayAddress,
-                            NativeObject = item.NativeObject
+                            NativeObject = item.NativeObject,
+                            Level = nativeObject.Level,
                         });
                     }
+
+
                     scanCollectionView.ItemsSource = networkDataModel;
                     loading.IsRunning = false;
                     scanCollectionView.IsVisible = true;
@@ -94,15 +156,14 @@ namespace Campus_Indoor_Navigation_System
         private void StartLocationUpdates()
         {
             geoRequest = new GeolocationRequest(GeolocationAccuracy.Best);
-            cts = new CancellationTokenSource();
-            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
-            {
-                MainThread.BeginInvokeOnMainThread(GetCurrentLocation);
-                return true;
-            });
+            timerGPSScan = new Timer(async (state) =>
+                await MainThread.InvokeOnMainThreadAsync(async () => await GetCurrentLocation()),
+                null,
+                TimeSpan.Zero,
+                TimeSpan.FromMinutes(1)); //This is one, but should be longer, but I don't know if it will run right away if we set it to 10.
         }
 
-        private async void GetCurrentLocation()
+        private async Task GetCurrentLocation()
         {
             try
             {
@@ -110,7 +171,7 @@ namespace Campus_Indoor_Navigation_System
                 if (location != null)
                 {
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
-                    await GetWifiList();
+                    await GetWifiList(); //This might not be needed.
                 }
             }
             catch (Exception ex)
@@ -130,11 +191,29 @@ namespace Campus_Indoor_Navigation_System
 
         private void StartPeriodicScan()
         {
-            timer = new Timer(async (state) =>
+            timerWiFiScan = new Timer(async (state) =>
                 await MainThread.InvokeOnMainThreadAsync(async () => await GetWifiList()),
                 null,
                 TimeSpan.Zero,
-                TimeSpan.FromMinutes(5));
+                TimeSpan.FromSeconds(3)); //This should be triggered when clicking to make a pin, not frequently like this.
+            //// I MADE THIS VERY SMALL, SHOULD BE HIGHER FOR TESTING.
         }
     }
 }
+
+
+
+//On map tap, add a marker, perform a scan, and for every item found in the scan (use a foreach), perform the following (inside the foreach):
+//
+//Create a new record in the database with:
+// - Date/Time
+// - Latitude of the new pin on the google map.
+// - Longitude of the new pin on the google map.
+// - MAC Address (bssid) of scanned device.
+// - Level of scanned device.
+
+//Basically if your scan found 10 items, you would create 10 rows with the exact same Latitude and Longitude, but each would have a unique MAC Address and Level.
+
+//When you perform the insert, you want to check if the row already exists by selecting WHERE Longitude =... AND Laitude =... AND MAC =... AND Level =..., if a row already exists, don't add a new one.
+
+// IMPORTANT: Youb are collecting the GPS position, but that is not the Latitude and Longitude you would store, you would get the lat/lon to store from the NEW PIN tapped. The lat/long from the GPS can be used to generally center the google map when the page is loaded initially. As such, it does not need to re-check the gps regularly, once on page load is fine.

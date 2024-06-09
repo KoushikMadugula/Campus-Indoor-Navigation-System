@@ -26,7 +26,8 @@
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
                                     <Label FontSize="18" Text="{Binding SsidName}" />
-                                    <Label FontSize="14" Text="{Binding Bssid}" />
+                                    <Label FontSize="14" Text="{Binding Level}" />
+                                    <Label FontSize="14" Text="{Binding Bssid}" /> 
                                 </StackLayout>
                                 <Button
                                     Grid.Column="1"

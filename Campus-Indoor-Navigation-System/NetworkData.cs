@@ -16,5 +16,6 @@ namespace Campus_Indoor_Navigation_System
         public string? GatewayAddress { get; set; }
         public object? NativeObject { get; set; }
         public object? Bssid { get; set; }
+        public object? Level { get; internal set; }
     }
 }
