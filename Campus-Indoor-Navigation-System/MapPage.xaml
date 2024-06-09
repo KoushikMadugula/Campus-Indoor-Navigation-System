@@ -6,7 +6,8 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
 
     <maps:Map x:Name="map"
-              MapType="Street">
+              MapType="Street"
+              MapClicked="OnMapClicked">
         
         <maps:Map.Pins>
             <maps:Pin Label="Cambrian College"

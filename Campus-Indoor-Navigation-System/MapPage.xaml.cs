@@ -6,16 +6,17 @@ using Map = Microsoft.Maui.Controls.Maps.Map;
 
 public partial class MapPage : ContentPage
 {
-	public MapPage()
-	{
-		InitializeComponent();
-		
+    public MapPage()
+    {
+        InitializeComponent();
+
 
         //setting cambrian college address
-        
+
         var initialLocation = new Location(46.5291410, -80.9407060); // cambrian coordinates
         MapSpan mapSpan = MapSpan.FromCenterAndRadius(initialLocation, Distance.FromMeters(10));
         map.MoveToRegion(mapSpan);
+
 
         Pin pin = new Pin
         {
@@ -24,7 +25,17 @@ public partial class MapPage : ContentPage
             Location = new Location(46.5291410, -80.9407060)
         };
         map.Pins.Add(pin);
+    }
 
+        private void OnMapClicked(object sender, MapClickedEventArgs e)
+        {
+            var pin = new Pin
+            {
+                Label = "New Pin",
+                Location = e.Location,
+                Type = PinType.Place
+            };
+            map.Pins.Add(pin);
+        }
 
     }
-}
