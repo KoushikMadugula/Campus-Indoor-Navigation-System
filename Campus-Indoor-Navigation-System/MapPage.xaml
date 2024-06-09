@@ -3,8 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Campus_Indoor_Navigation_System.MapPage"
              xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
-             Title="MapPage">
-    <maps:Map x:Name="map" 
-              MapType="Street"
-              IsShowingUser="true"/>
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
+
+    <maps:Map x:Name="map"
+              MapType="Street">
+        
+        <maps:Map.Pins>
+            <maps:Pin Label="Cambrian College"
+                      Type="Place">
+                <maps:Pin.Location>
+                    <sensors:Location>
+                        <x:Arguments>
+                            <x:Double>46.5291410</x:Double>
+                            <x:Double>-80.9407060</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                </maps:Pin.Location>
+            </maps:Pin>
+        </maps:Map.Pins>
+    </maps:Map>
 </ContentPage>
