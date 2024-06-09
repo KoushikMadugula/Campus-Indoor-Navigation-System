@@ -8,7 +8,8 @@ public partial class MapPage : ContentPage
 		InitializeComponent();
 		Map map = new Map
 		{
-			MapType = Microsoft.Maui.Maps.MapType.Street
-		};
+			MapType = Microsoft.Maui.Maps.MapType.Street,
+            IsShowingUser = true
+        };
 	}
 }
