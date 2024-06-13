@@ -27,6 +27,7 @@
                 BackgroundColor="Orange"
                 Clicked="NavigateFloorOne"
                 HorizontalOptions="Fill" 
+                TextColor="Black"
                 />
 
             <Button
@@ -35,7 +36,8 @@
                 MaximumWidthRequest="200"
                 Clicked="NavigateFloorTwo"
                 BackgroundColor="Orange"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"
+                TextColor="Black"/>
 
             <Button
                 x:Name="FloorThree"
@@ -43,7 +45,8 @@
                 MaximumWidthRequest="200"
                 Clicked="NavigateFloorThree"
                 BackgroundColor="Orange"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"
+                TextColor="Black"/>
 
             <Button
                 x:Name="FloorFour"
@@ -51,7 +54,8 @@
                 MaximumWidthRequest="200"
                 Clicked="NavigateFloorFour"
                 BackgroundColor="Orange"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"
+                TextColor="Black"/>
 
             <Button
                 x:Name="WifiPage"
@@ -59,7 +63,8 @@
                 MaximumWidthRequest="200"
                 Clicked="NavigateWifiPage"
                 BackgroundColor="Orange"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill" 
+                TextColor="Black"/>
 
 
             <Button
@@ -68,7 +73,8 @@
                 MaximumWidthRequest="200"
                 Clicked="NavigateMapPage"
                 BackgroundColor="Orange"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill"
+                TextColor="Black"/>
 
             
         </VerticalStackLayout>
