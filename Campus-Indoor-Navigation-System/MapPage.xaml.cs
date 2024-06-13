@@ -6,6 +6,7 @@ using Map = Microsoft.Maui.Controls.Maps.Map;
 
 public partial class MapPage : ContentPage
 {
+    private Pin _currentPin;
     public MapPage()
     {
         InitializeComponent();
@@ -18,24 +19,29 @@ public partial class MapPage : ContentPage
         map.MoveToRegion(mapSpan);
 
 
-        Pin pin = new Pin
+        _currentPin = new Pin
         {
             Label = "Cambrian College",
             Type = PinType.Place,
             Location = new Location(46.5291410, -80.9407060)
         };
-        map.Pins.Add(pin);
+        map.Pins.Add(_currentPin);
     }
 
-        private void OnMapClicked(object sender, MapClickedEventArgs e)
+    private void OnMapClicked(object sender, MapClickedEventArgs e)
         {
-            var pin = new Pin
+        // Remove the previous pin if it exists
+        if (_currentPin != null)
+        {
+            map.Pins.Remove(_currentPin);
+        }
+        _currentPin = new Pin
             {
                 Label = "New Pin",
                 Location = e.Location,
                 Type = PinType.Place
             };
-            map.Pins.Add(pin);
+            map.Pins.Add(_currentPin);
         }
 
     }
