@@ -20,11 +20,11 @@ namespace Campus_Indoor_Navigation_System
             //builder.Services.AddSingleton<IMap>(Map.Default);
             //builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
 
-           // builder.Services.AddSingleton<MainPageViewModel>();
-           // builder.Services.AddSingleton<MainPage>();
+            // builder.Services.AddSingleton<MainPageViewModel>();
+            // builder.Services.AddSingleton<MainPage>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

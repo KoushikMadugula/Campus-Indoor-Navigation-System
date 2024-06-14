@@ -8,19 +8,6 @@
     <maps:Map x:Name="map"
               MapType="Street"
               MapClicked="OnMapClicked">
-        
-        <maps:Map.Pins>
-            <maps:Pin Label="Cambrian College"
-                      Type="Place">
-                <maps:Pin.Location>
-                    <sensors:Location>
-                        <x:Arguments>
-                            <x:Double>46.5291410</x:Double>
-                            <x:Double>-80.9407060</x:Double>
-                        </x:Arguments>
-                    </sensors:Location>
-                </maps:Pin.Location>
-            </maps:Pin>
-        </maps:Map.Pins>
+       
     </maps:Map>
 </ContentPage>

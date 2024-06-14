@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Campus_Indoor_Navigation_System
 {
-    internal class NetworkData
+    public class NetworkData
     {
-
         public int StausId { get; set; }
         public string? Ssid { get; set; }
         public string? SsidName { get { return string.IsNullOrWhiteSpace(Ssid) ? "Unknown" : Ssid; } }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "817686185305",
+    "project_id": "mapmycampus-425914",
+    "storage_bucket": "mapmycampus-425914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817686185305:android:60ad540bf8271cfbc3f848",
+        "android_client_info": {
+          "package_name": "com.cambrian.campusindoornavigation.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBafDukRzGhdmduZ5lpoJ2UYdvCVkFcA_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
