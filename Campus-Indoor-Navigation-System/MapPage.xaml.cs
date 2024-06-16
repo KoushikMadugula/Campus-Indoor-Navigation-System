@@ -99,7 +99,7 @@ public partial class MapPage : ContentPage
         map.Pins.Add(pin);
 
 
-
+        //await AddLocationToFirebase(location);
 
         //FirestoreDb db = FirestoreDb.Create("mapmycampus-425914");
 
@@ -108,6 +108,25 @@ public partial class MapPage : ContentPage
         //DocumentReference document = await collection.AddAsync(location);
 
 
+    }
+    private async Task AddLocationToFirebase(LocationDetails location)
+    {
+        try
+        {
+            // Initialize Firestore with your project ID
+            FirestoreDb db = FirestoreDb.Create("mapmycampus-425914");
+
+            // Create a new document in the "locations" collection
+            var collection = db.Collection("locations");
+            var document = await collection.AddAsync(location);
+
+
+            Console.WriteLine($"Location added to Firestore with ID: {document.Id}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error adding location to Firestore: {ex.Message}");
+        }
     }
 
 }

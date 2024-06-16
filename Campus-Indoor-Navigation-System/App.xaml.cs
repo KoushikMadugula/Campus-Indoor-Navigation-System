@@ -1,4 +1,6 @@
-﻿namespace Campus_Indoor_Navigation_System
+﻿using Microsoft.Maui.Controls;
+
+namespace Campus_Indoor_Navigation_System
 {
     public partial class App : Application
     {
@@ -17,7 +19,8 @@
             // Ensure the google-services.json file is copied to the AppDataDirectory
             //File.Copy(sourcePath, destinationPath, true);
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new HomePage());
+
         }
     }
 }
