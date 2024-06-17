@@ -5,7 +5,7 @@
              >
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
    <Image
-   Source="logo.jpeg"
+   Source="mmclogo.jpeg"
    Aspect="AspectFit"
    MaximumHeightRequest="10000"
    MaximumWidthRequest="200"
